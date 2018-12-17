@@ -1,6 +1,6 @@
 package `in`.evacuees.barscanner
 
-import `in`.evacuees.barscanner.database.tables.AdapterProductList
+import `in`.evacuees.barscanner.database.tables.AdapterSoldProductList
 import `in`.evacuees.barscanner.database.tables.SoldProduct
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -15,7 +15,7 @@ class AutoScannerActivity : AppCompatActivity() {
 
 
     private val list = emptyList<SoldProduct>().toMutableList()
-    private val adapter: AdapterProductList by lazy { AdapterProductList(list = list, context = this@AutoScannerActivity) }
+    private val adapter: AdapterSoldProductList by lazy { AdapterSoldProductList(list = list, context = this@AutoScannerActivity) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auto_scanner)

@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class AdapterProductList(val context: Context, val list: MutableList<SoldProduct>) : RecyclerView.Adapter<AdapterProductList.ViewHolder>() {
+class AdapterSoldProductList(val context: Context, val list: MutableList<SoldProduct>) : RecyclerView.Adapter<AdapterSoldProductList.ViewHolder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_sold_products, p0, false)
