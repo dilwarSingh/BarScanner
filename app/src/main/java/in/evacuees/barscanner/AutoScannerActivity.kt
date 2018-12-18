@@ -2,6 +2,7 @@ package `in`.evacuees.barscanner
 
 import `in`.evacuees.barscanner.database.tables.AdapterSoldProductList
 import `in`.evacuees.barscanner.database.tables.SoldProduct
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -37,7 +38,9 @@ class AutoScannerActivity : AppCompatActivity() {
             }
             false
         }
-
+        productListBt.setOnClickListener {
+            startActivity(Intent(this@AutoScannerActivity, ProductListActivity::class.java))
+        }
 
     }
 
@@ -69,7 +72,7 @@ class AutoScannerActivity : AppCompatActivity() {
     }
 
     fun myToast(message: String): Unit {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
 }
