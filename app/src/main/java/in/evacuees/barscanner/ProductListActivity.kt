@@ -9,7 +9,6 @@ import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_product_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -51,8 +50,16 @@ class ProductListActivity : AppCompatActivity() {
                         val list = emptyList<Product>().toMutableList()
 
                         products.forEach {
-                            val item = Product(it.pid!!)
+                            val item = Product(it.code!!)
                             item.productName = it.name!!
+                            item.status = "Product"
+
+                            list.add(item)
+                        }
+                        data.retailers!!.forEach {
+                            val item = Product(it!!.code!!)
+                            item.productName = it.name!!
+                            item.status = "Retailers"
 
                             list.add(item)
                         }
