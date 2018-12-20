@@ -9,6 +9,7 @@ import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_product_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
