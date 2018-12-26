@@ -1,7 +1,9 @@
 package `in`.evacuees.barscanner
 
 import `in`.evacuees.barscanner.Response.ProductsAndStores
+import `in`.evacuees.barscanner.database.DatabaseClient
 import `in`.evacuees.barscanner.database.tables.Product
+import `in`.evacuees.barscanner.database.tables.Store
 import `in`.evacuees.barscanner.util.Api.Api
 import `in`.evacuees.barscanner.util.AppConstants
 import `in`.evacuees.barscanner.util.CommonObjects
@@ -48,25 +50,37 @@ class ProductListActivity : AppCompatActivity() {
                     if (data?.message == "success") {
                         val products = data.products
 
-                        val list = emptyList<Product>().toMutableList()
+                        val productList = emptyList<Product>().toMutableList()
+                        val storeList = emptyList<Store>().toMutableList()
 
                         products.forEach {
                             val item = Product(it.code!!)
                             item.productName = it.name!!
                             item.status = "Product"
 
-                            list.add(item)
+                            productList.add(item)
                         }
                         data.retailers!!.forEach {
                             val item = Product(it!!.code!!)
                             item.productName = it.name!!
                             item.status = "Retailers"
 
-                            list.add(item)
+                            productList.add(item)
+
+
+                            val store = Store(it.code!!)
+                            store.storeName = it.name
+                            storeList.add(store)
                         }
 
+                        DatabaseClient.getInstance(this@ProductListActivity)
+                                .appDatabase.daoAccess().insertAllProducts(productList)
 
-                        productListRecycler.adapter = AdapterProductList(this@ProductListActivity, list)
+                        DatabaseClient.getInstance(this@ProductListActivity)
+                                .appDatabase.daoAccess().insertAllStores(storeList)
+
+
+                        productListRecycler.adapter = AdapterProductList(this@ProductListActivity, productList)
 
                     }
                 } catch (e: Exception) {

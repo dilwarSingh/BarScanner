@@ -13,4 +13,5 @@ data class SoldProduct(val productId: String) {
 
     var sycn: Boolean = false
     lateinit var productName: String
+    lateinit var storeId: String
 }
