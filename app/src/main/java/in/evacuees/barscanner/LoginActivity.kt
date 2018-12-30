@@ -34,6 +34,10 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
+        if (!co.getString(AppConstants.USER_ID).isBlank()) {
+            startActivity(Intent(this@LoginActivity, AutoScannerActivity::class.java))
+            finish()
+        }
         loginBt.setOnClickListener { hitLoginApi() }
     }
 
@@ -51,6 +55,7 @@ class LoginActivity : AppCompatActivity() {
                             if (loginData?.message == "success") {
                                 co.putString(AppConstants.USER_ID, loginData.list!!.uid!!)
                                 startActivity(Intent(this@LoginActivity, AutoScannerActivity::class.java))
+                                finish()
                             }
                         } catch (e: Exception) {
                             Toast.makeText(this@LoginActivity, e.message, Toast.LENGTH_SHORT).show()

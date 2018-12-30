@@ -20,6 +20,12 @@ interface DaoAccess {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllSoldProducts(list: List<SoldProduct>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertSoldProduct(product: SoldProduct)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun getSoldProduct(product: SoldProduct)
+
     @Query("SELECT * from Store where storeId = :storeId")
     fun getStore(storeId: String): Store?
 

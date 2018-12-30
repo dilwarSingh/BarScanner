@@ -1,7 +1,7 @@
 package `in`.evacuees.barscanner
 
 import `in`.evacuees.barscanner.Response.ProductsAndStores
-import `in`.evacuees.barscanner.database.DatabaseClient
+import `in`.evacuees.barscanner.database.AppDatabase
 import `in`.evacuees.barscanner.database.tables.Product
 import `in`.evacuees.barscanner.database.tables.Store
 import `in`.evacuees.barscanner.util.Api.Api
@@ -73,11 +73,11 @@ class ProductListActivity : AppCompatActivity() {
                             storeList.add(store)
                         }
 
-                        DatabaseClient.getInstance(this@ProductListActivity)
-                                .appDatabase.daoAccess().insertAllProducts(productList)
+                        AppDatabase.getAppDatabase(this@ProductListActivity)
+                                .daoAccess().insertAllProducts(productList)
 
-                        DatabaseClient.getInstance(this@ProductListActivity)
-                                .appDatabase.daoAccess().insertAllStores(storeList)
+                        AppDatabase.getAppDatabase(this@ProductListActivity)
+                                .daoAccess().insertAllStores(storeList)
 
 
                         productListRecycler.adapter = AdapterProductList(this@ProductListActivity, productList)
